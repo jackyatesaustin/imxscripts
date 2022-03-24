@@ -49,7 +49,7 @@ Transfer a token between two users on IMX. This command only supports the transf
 users.
 
 ```
-npx ts-node ./src/admin/transfer.ts -f <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT>
+npx ts-node ./src/admin/transfer.ts -k <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT>
 ```
 
 ### Deposits
@@ -58,12 +58,12 @@ The current implementation only supports the depositing of ETH from L1 to L2.
 This script updates a users IMX balance. To deposit ETH from L1 to L2 issue the following command;
 
 ```
-npx ts-node ./src/admin/deposit.ts -f <WALLET_PROVATE_KEY> -a <AMOUNT_IN_ETH>
+npx ts-node ./src/admin/deposit.ts -k <WALLET_PRIVATE_KEY> -a <AMOUNT_IN_ETH>
 ```
 
 ### Withdrawals
 
-Withdrawals on IMX is a two step process. The withdrawal needs to be prepared first. During preparation funds are deducted from the off-chain vault, and moved into the pending on-chain withdrawals area. This area is accessible to the StarkEx contract which completes the withdrawal when the `completeWithdraw` function is invoked. The `completeWithdraw` function invokes the relevant StarkEx contract function depending on the type of token. For example if we are withdrawing ETH/ERC-20, it invokes the `withdraw` function. If we are withdrawing a token minted on IMX, it invokes the `withdrawAndMint` else it just invokes the `withdrawNFT` function.
+Withdrawals on IMX is a two step process. The withdrawal needs to be prepared first. During preparation funds are deducted from the off-chain vault, and moved into the pending on-chain withdrawals area. This area is accessible to the StarkEx contract which completes the withdrawal when the `completeWithdraw` function is invoked. The `completeWithdraw` function invokes the relevant StarkEx contract function depending on the type of token. For example if we are withdrawing ETH/ERC-20, it invokes the `prepareWithdraw` function. If we are withdrawing a token minted on IMX, it invokes the `withdrawAndMint` else it just invokes the `withdrawNFT` function.
 
 #### Prepare Withdrawal
 
@@ -71,28 +71,28 @@ The current implementation only supports the withdrawal preparation of an ERC-72
 To prepare a withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdrawal.ts \
-  -a <WALLET_ADDRESS> \
+npx ts-node ./src/admin/withdraw.ts \
   -k <WALLET_PRIVATE_KEY> \
   -t <TOKEN_ID> \
-  -s <SMART_CONTRACT_ADDRESS>
+  -s <SMART_CONTRACT_ADDRESS> \
+  --step prepare
 ```
 
-#### Withdrawal
+#### Complete Withdrawal
 
 The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To complete the withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdrawal.ts \
-  -p <STARK_PUBLIC_KEY> \
+npx ts-node ./src/admin/withdraw.ts \
   -k <WALLET_PRIVATE_KEY> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS>
+  --step complete
 ```
 
 ## TODO:
 
 * Add support for withdrawing ERC-20 & ETH.
 * Add support for depositing ERC-721 from L1 to L2.
-* Add support for transfering ERC-721 & ETH-20 between users.
+* Add support for transfering ERC-721 & ERC-20 between users.
