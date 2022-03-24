@@ -2,23 +2,7 @@
 
 import yargs from 'yargs';
 import { ethers, Wallet } from 'ethers';
-import { ImmutableXClient } from '@imtbl/imx-link-lib';
-
-/**
- * Returns the ImmutableXClient which points to the UAT environment.
- * @returns Promise<ImmutableXClient>
- */
- async function getClient(): Promise<ImmutableXClient> {
-  return await ImmutableXClient.build({ publicApiUrl: getApiAddress() });
-}
-
-/**
- * Returns IMX UAT api base url.
- */
-function getApiAddress(): string {
-  return 'https://api.ropsten.x.immutable.com/v1';
-}
-
+import { getClient } from '../client';
 /**
  * This function shows the ETH balance of a given wallet.
  */
@@ -67,5 +51,5 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 main(argv.a)
-  .then(() => console.log('Balance retrieve complete.'))
+  .then(() => console.log('Balance retrieval complete.'))
   .catch(err => console.error(err));

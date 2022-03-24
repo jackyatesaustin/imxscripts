@@ -2,12 +2,12 @@ import dotenv from 'dotenv';
 import yargs from 'yargs';
 import { ethers, Wallet } from 'ethers';
 import { getClient } from '../client';
+dotenv.config();
 
 /**
  * Register a wallet on IMX.
  */
 async function main(ownerPrivateKey: string, walletAddress: string) {
-  dotenv.config();
   const provider = new ethers.providers.JsonRpcProvider(process.env.ROPSTEN_ETH_PROVIDER_URL);
   const owner: Wallet = new ethers.Wallet(ownerPrivateKey).connect(provider);
   const immutableXClient = await getClient(owner);

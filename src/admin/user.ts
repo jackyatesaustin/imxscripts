@@ -1,22 +1,10 @@
 #!/usr/bin/env node
 
-import axios from 'axios';
 import yargs from 'yargs';
-import { ImmutableXClient } from '@imtbl/imx-link-lib';
+import { getClient } from '../client';
 
 interface UserResponse {
   accounts: string[]
-}
-
-async function api(url: string): Promise<UserResponse> {
-  const { data } = await axios.request({ url });
-  return data;
-}
-
-async function getClient(): Promise<ImmutableXClient> {
-  return await ImmutableXClient.build({
-    publicApiUrl: 'https://api.ropsten.x.immutable.com/v1'
-  });
 }
 
 /**

@@ -1,15 +1,6 @@
 #!/usr/bin/env node
-
 import yargs from 'yargs';
-import { ImmutableXClient } from '@imtbl/imx-link-lib';
-
-/**
- * Returns the ImmutableXClient which points to the Ropsten environment.
- * @returns Promise<ImmutableXClient>
- */
- async function getClient(): Promise<ImmutableXClient> {
-  return await ImmutableXClient.build({ publicApiUrl: 'https://api.ropsten.x.immutable.com/v1' });
-}
+import { getClient } from '../client';
 
 /**
  * Return the users current asset holding.
