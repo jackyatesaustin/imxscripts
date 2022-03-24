@@ -19,6 +19,7 @@
 import { ethers } from 'ethers';
 import { ImmutableXClient, ImmutableXWallet } from '@imtbl/imx-link-lib';
 import { ERC721TokenType, MintableERC721TokenType, ImmutableMethodParams, ETHTokenType } from '@imtbl/imx-link-types';
+import { getClient } from '../client';
 
 /**
  * Registers a user on Immutable X
@@ -60,23 +61,6 @@ function random()
     const min = 1;
     const max = 1000000000;
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-/**
- * Return the ImmutableXClient for a given user (i.e. wallet). This is
- * used to sign the corresponding requests.
- */
-async function getClient(w: ethers.Wallet)
-    : Promise<ImmutableXClient> {
-    const uat_api_url = 'https://api.ropsten.x.immutable.com/v1/';
-    const uat_bridge_contract = '0x4527BE8f31E2ebFbEF4fCADDb5a17447B27d2aef'; // Immutable X Bridge contract address - this is needed for deposits using the IMX client
-    return await ImmutableXClient.build({
-        publicApiUrl: uat_api_url,
-        signer: w,
-        starkContractAddress: uat_bridge_contract,
-        gasLimit: '77200',
-        gasPrice: '2000000000'
-    })
 }
 
 async function getUserInventory(client: ImmutableXClient, user: string) {

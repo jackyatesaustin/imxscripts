@@ -18,7 +18,7 @@ import { getClient } from '../client';
 async function getUserBalance(address: string): Promise<void> {
   const client = await getClient();
   const response = await client.getBalance({ user: address, tokenAddress: 'eth' });
-  console.log(`User IMX balance: ${response.balance}`);
+  console.log(`User ETH balance on IMX: ${response.balance}`);
 }
 
 /**
