@@ -13,7 +13,7 @@ the following commands in your terminal in Mac OS.
 ## Getting Started
 
 With the pre-requisite software installed, execute the command `npm install` to install the required libraries to
-run the code in this repository.
+run the code in this repository. Also make sure to rename the .env.example file to .env and populate the different variables.
 
 ## Scripts
 
