@@ -2,8 +2,8 @@
 
 import yargs from 'yargs';
 import { ethers, Wallet } from 'ethers';
-import { ImmutableXClient } from '@imtbl/imx-link-lib';
-import { ETHTokenType, ImmutableMethodResults } from '@imtbl/imx-link-types';
+import { ImmutableXClient } from '@imtbl/imx-sdk';
+import { ETHTokenType, ImmutableMethodResults } from '@imtbl/imx-sdk';
 import { getClient } from '../client';
 
 /**

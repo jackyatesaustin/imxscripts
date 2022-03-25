@@ -1,6 +1,6 @@
 const { AlchemyProvider } = require("@ethersproject/providers");
 const { Wallet } = require("@ethersproject/wallet");
-const { ImmutableXClient } = require("@imtbl/imx-link-lib");
+const { ImmutableXClient } = require("@imtbl/imx-sdk");
 const {
   MintableERC721TokenType,
   MintableERC20TokenType,

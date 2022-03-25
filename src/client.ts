@@ -1,5 +1,5 @@
 import { ethers, Wallet } from 'ethers';
-import { ImmutableXClient } from '@imtbl/imx-link-lib';
+import { ImmutableXClient } from '@imtbl/imx-sdk';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -12,7 +12,6 @@ dotenv.config();
  */
 export async function getClient(privateKey?: string)
   : Promise<ImmutableXClient> {
-    if(privateKey) {
       const provider = new ethers.providers.JsonRpcProvider(process.env.ROPSTEN_ETH_PROVIDER_URL);
       const signer = privateKey ? new Wallet(privateKey).connect(provider) : undefined
       return await ImmutableXClient.build({ 
@@ -23,7 +22,4 @@ export async function getClient(privateKey?: string)
         // IMX's Ropsten Registration contract address
         registrationContractAddress: '0x6C21EC8DE44AE44D0992ec3e2d9f1aBb6207D864',
   })
-    } else {
-      return await ImmutableXClient.build({ publicApiUrl: 'https://api.ropsten.x.immutable.com/v1' });
-    }
 }

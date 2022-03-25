@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
 import { ethers, Wallet } from 'ethers';
-import { ETHTokenType } from '@imtbl/imx-link-types';
+import { ETHTokenType } from '@imtbl/imx-sdk';
 import { getClient } from '../client';
 
 require('dotenv').config();

@@ -1,10 +1,10 @@
-import { ImmutableXClient, sleep } from "@imtbl/imx-link-lib";
+import { ImmutableXClient, sleep } from "@imtbl/imx-sdk";
 import {
   ETHTokenType,
   ImmutableMethodResults,
   MintableERC721TokenType,
   ERC721TokenType,
-} from "@imtbl/imx-link-types";
+} from "@imtbl/imx-sdk";
 import { BigNumber } from "@ethersproject/bignumber";
 import { ethers, Wallet } from "ethers";
 import dotenv from "dotenv";

@@ -17,8 +17,8 @@
  */
 
 import { ethers } from 'ethers';
-import { ImmutableXClient, ImmutableXWallet } from '@imtbl/imx-link-lib';
-import { ERC721TokenType, MintableERC721TokenType, ImmutableMethodParams, ETHTokenType } from '@imtbl/imx-link-types';
+import { ImmutableXClient, ImmutableXWallet } from '@imtbl/imx-sdk';
+import { ERC721TokenType, MintableERC721TokenType, ImmutableMethodParams, ETHTokenType } from '@imtbl/imx-sdk';
 import { getClient } from '../client';
 
 /**

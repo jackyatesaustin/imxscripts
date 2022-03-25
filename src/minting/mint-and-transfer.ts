@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
-import { ImmutableXClient, ImmutableXWallet } from '@imtbl/imx-link-lib';
-import { ERC721TokenType, ImmutableMethodResults, MintableERC721TokenType } from '@imtbl/imx-link-types';
+import { ImmutableXClient, ImmutableXWallet } from '@imtbl/imx-sdk';
+import { ERC721TokenType, ImmutableMethodResults, MintableERC721TokenType } from '@imtbl/imx-sdk';
 
 async function registerUser(client: ImmutableXClient, wallet: ethers.Wallet)
     : Promise<string> {
