@@ -15,11 +15,11 @@ export async function getClient(privateKey?: string)
       const provider = new ethers.providers.JsonRpcProvider(process.env.ROPSTEN_ETH_PROVIDER_URL);
       const signer = privateKey ? new Wallet(privateKey).connect(provider) : undefined
       return await ImmutableXClient.build({ 
-        publicApiUrl: 'https://api.ropsten.x.immutable.com/v1',
+        publicApiUrl: process.env.ROPSTEN_ENV_URL!,
         signer,
         // IMX's Ropsten STARK contract address
-        starkContractAddress: '0x4527BE8f31E2ebFbEF4fCADDb5a17447B27d2aef',
+        starkContractAddress: process.env.ROPSTEN_STARK_CONTRACT_ADDRESS,
         // IMX's Ropsten Registration contract address
-        registrationContractAddress: '0x6C21EC8DE44AE44D0992ec3e2d9f1aBb6207D864',
+        registrationContractAddress: process.env.ROPSTEN_REGISTRATION_CONTRACT_ADDRESS,
   })
 }
