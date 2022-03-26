@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs';
-import axios from 'axios';
+//import axios from 'axios';
+import { getClient } from '../client';
 
 interface UserResponse {
   accounts: string[]
@@ -12,10 +13,16 @@ interface UserResponse {
  * @param walletAddress 
  * @returns 
  */
-async function api(walletAddress: string): Promise<UserResponse> {
+/**async function api(walletAddress: string): Promise<UserResponse> {
   const url = `https://api.ropsten.x.immutable.com/v1/users/${walletAddress}`;
   const { data } = await axios.request({ url });
   return data;
+}
+*/
+
+async function api(walletAddress: string): Promise<UserResponse> {
+  const client = await getClient();
+  return client.isRegisteredStark
 }
 
 const argv = yargs(process.argv.slice(2))
