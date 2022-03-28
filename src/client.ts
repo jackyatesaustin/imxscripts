@@ -10,16 +10,14 @@ dotenv.config();
  * @param gasLimit - maximum amount of Gas that a user is willing to pay for performing this action or confirming a transaction (a minimum of 21,000)
  * @param gasPrice - price of Gas (Gas Price) is the amount of Gwei that the user is willing to spend on each unit of Gas
  */
-export async function getClient(privateKey?: string)
+export async function getClient(network: string, privateKey?: string)
   : Promise<ImmutableXClient> {
-      const provider = new ethers.providers.JsonRpcProvider(process.env.ROPSTEN_ETH_PROVIDER_URL);
+      const provider = new ethers.providers.JsonRpcProvider((network == "ropsten") ? process.env.ROPSTEN_ETH_PROVIDER_URL : process.env.MAINNET_ETH_PROVIDER_URL);
       const signer = privateKey ? new Wallet(privateKey).connect(provider) : undefined
       return await ImmutableXClient.build({ 
-        publicApiUrl: process.env.ROPSTEN_ENV_URL!,
+        publicApiUrl: (network == "ropsten") ? process.env.ROPSTEN_ENV_URL! : process.env.MAINNET_ENV_URL!,
         signer,
-        // IMX's Ropsten STARK contract address
-        starkContractAddress: process.env.ROPSTEN_STARK_CONTRACT_ADDRESS,
-        // IMX's Ropsten Registration contract address
-        registrationContractAddress: process.env.ROPSTEN_REGISTRATION_CONTRACT_ADDRESS,
+        starkContractAddress: (network == "ropsten") ? process.env.ROPSTEN_STARK_CONTRACT_ADDRESS : undefined,
+        registrationContractAddress: (network == "ropsten") ? process.env.ROPSTEN_REGISTRATION_CONTRACT_ADDRESS : undefined,
   })
 }

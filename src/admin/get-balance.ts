@@ -15,8 +15,8 @@ import { getClient } from '../client';
 /**
  * Return the current Layer 2 ETH balance for a user.
  */
-async function getUserBalance(address: string): Promise<void> {
-  const client = await getClient();
+async function getUserBalance(address: string, network:string): Promise<void> {
+  const client = await getClient(network);
   const response = await client.getBalance({ user: address, tokenAddress: 'eth' });
   console.log(`User ETH balance on IMX: ${response.balance}`);
 }
@@ -25,8 +25,8 @@ async function getUserBalance(address: string): Promise<void> {
  * List all the Layer 2 balances across the various token holdings for a user such
  * as ETH, IMX etc.
  */
- async function listUserBalances(address: string): Promise<void> {
-  const client = await getClient();
+ async function listUserBalances(address: string, network: string): Promise<void> {
+  const client = await getClient(network);
   const response = await client.listBalances({ user: address });
   for (const bal of response.result) {
     console.log(`Token: ${bal.symbol}`);
@@ -37,19 +37,22 @@ async function getUserBalance(address: string): Promise<void> {
   }
 }
 
-async function main(walletAddress: string): Promise<void> {
+async function main(walletAddress: string, network: string): Promise<void> {
   console.log('Response from the getBalance endpoint.')
-  await getUserBalance(walletAddress);
+  await getUserBalance(walletAddress, network);
   console.log('---------------------------------------')
   console.log('Response from the listBalances endpoint.')
-  await listUserBalances(walletAddress);
+  await listUserBalances(walletAddress, network);
 }
 
 const argv = yargs(process.argv.slice(2))
   .usage('Usage: -a <address>')
-  .options({ a: { alias: 'address', describe: 'wallet address', type: 'string', demandOption: true }})
+  .options({ 
+  a: { alias: 'address', describe: 'wallet address', type: 'string', demandOption: true },
+  network: { describe: 'network. ropsten or mainnet', type: 'string', demandOption: true}
+  })
   .parseSync();
 
-main(argv.a)
+main(argv.a, argv.network)
   .then(() => console.log('Balance retrieval complete.'))
   .catch(err => console.error(err));
