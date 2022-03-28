@@ -22,25 +22,25 @@ The scripts can be found in the `src/admin` folder, and are broken down below;
 #### Retrieve a users ETH balance
 
 ```
-npx ts-node ./src/admin/get-balance.ts -a <WALLET_ADDRESS>
+npx ts-node ./src/admin/get-balance.ts -a <WALLET_ADDRESS> --network ropsten
 ```
 
 #### Retrieve a users inventory
 
 ```
-npx ts-node ./src/admin/get-user-assets.ts -a <WALLET_ADDRESS>
+npx ts-node ./src/admin/get-user-assets.ts -a <WALLET_ADDRESS> --network ropsten
 ```
 
 ### Retrieve a Starkkey associated to a user
 
 ```
-npx ts-node ./src/admin/get-starkkey.ts -a <WALLET_ADDRESS>
+npx ts-node ./src/admin/get-starkkey.ts -a <WALLET_ADDRESS> --network ropsten
 ```
 
 ### Check whether a wallet is registered on IMX
 
 ```
-npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS>
+npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS> --network ropsten
 ```
 
 ### Transfers
@@ -49,7 +49,7 @@ Transfer a token between two users on IMX. This command only supports the transf
 users.
 
 ```
-npx ts-node ./src/admin/transfer.ts -k <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT>
+npx ts-node ./src/admin/transfer.ts -k <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT> --network ropsten
 ```
 
 ### Deposits
@@ -58,7 +58,7 @@ The current implementation only supports the depositing of ETH from L1 to L2.
 This script updates a users IMX balance. To deposit ETH from L1 to L2 issue the following command;
 
 ```
-npx ts-node ./src/admin/deposit.ts -k <WALLET_PRIVATE_KEY> -a <AMOUNT_IN_ETH>
+npx ts-node ./src/admin/deposit.ts -k <WALLET_PRIVATE_KEY> -a <AMOUNT_IN_ETH> --network ropsten
 ```
 
 ### Withdrawals
@@ -75,7 +75,8 @@ npx ts-node ./src/admin/withdraw.ts \
   -k <WALLET_PRIVATE_KEY> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS> \
-  --step prepare
+  --step prepare \ 
+  --network ropsten
 ```
 
 #### Complete Withdrawal
@@ -88,7 +89,8 @@ npx ts-node ./src/admin/withdraw.ts \
   -k <WALLET_PRIVATE_KEY> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS>
-  --step complete
+  --step complete \ 
+  --network ropsten
 ```
 
 ## TODO:
