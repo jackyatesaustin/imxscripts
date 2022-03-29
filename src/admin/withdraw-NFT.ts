@@ -5,7 +5,7 @@ import { ERC721TokenType } from '@imtbl/imx-sdk';
 import { ethers } from 'ethers';
 import { getClient } from '../client';
 
-async function prepareWithdraw(privateKey: string, tokenId: string, smartContractAddress: string, network:string): Promise<void> {
+async function prepareNFTWithdraw(privateKey: string, tokenId: string, smartContractAddress: string, network:string): Promise<void> {
   const client = await getClient(network, privateKey);
   await client.prepareWithdrawal({
     user: client.address,
@@ -20,7 +20,7 @@ async function prepareWithdraw(privateKey: string, tokenId: string, smartContrac
   })
 }
 
-async function completeWithdraw(privateKey: string, tokenId: string, smartContractAddress: string, network: string): Promise<string> {
+async function completeNFTWithdraw(privateKey: string, tokenId: string, smartContractAddress: string, network: string): Promise<string> {
   const client = await getClient(network, privateKey);
   return await client.completeWithdrawal({
     starkPublicKey: client.starkPublicKey,
@@ -45,16 +45,16 @@ async function main(
     step: string,
     network: string): Promise<void> {
   if (step === 'prepare') {
-    const result = await prepareWithdraw(privateKey, tokenId, smartContractAddress, network);
+    const result = await prepareNFTWithdraw(privateKey, tokenId, smartContractAddress, network);
     console.log(result);
   }  else {
-    const result = await completeWithdraw(privateKey, tokenId, smartContractAddress, network);
+    const result = await completeNFTWithdraw(privateKey, tokenId, smartContractAddress, network);
     console.log(result);
   }
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <private_key> -t <token_id> -s <smart_contract_address> -step <current_withdrawal_step>')
+  .usage('Usage: -k <private_key> -t <token_id> -s <smart_contract_address> --step <current_withdrawal_step> --network <network to withdraw>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true},
     t: { describe: 'token id', type: 'string', demandOption: true},
