@@ -46,10 +46,12 @@ async function main(
     network: string): Promise<void> {
   if (step === 'prepare') {
     const result = await prepareNFTWithdraw(privateKey, tokenId, smartContractAddress, network);
-    console.log(result);
+    console.log('Preparing withdrawal');
+    console.log('Result: ' + result);
   }  else {
     const result = await completeNFTWithdraw(privateKey, tokenId, smartContractAddress, network);
-    console.log(result);
+    console.log('Completing withdrawal');
+    console.log('Result: ' + result);
   }
 }
 
@@ -65,6 +67,6 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 main(argv.k, argv.t, argv.s, argv.step, argv.network)
-  .then(() => console.log('Withdrawal complete.'))
+  .then(() => console.log('Withdrawal sent without returned errors.'))
   .catch(err => console.error(err));
 
