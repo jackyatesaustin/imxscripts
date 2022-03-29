@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
 import { ethers } from 'ethers';
-import { ETHTokenType } from '@imtbl/imx-sdk';
+import { ETHTokenType, ERC721TokenType } from '@imtbl/imx-sdk';
 import { getClient } from '../client';
 
 require('dotenv').config();
@@ -11,7 +11,7 @@ require('dotenv').config();
  * used in the deposit depends on the settings in the getClient call, and
  * the Eth provider used.
  */
-async function deposit(ownerPrivateKey: string, amount: string, network: string): Promise<string> {
+async function depositETH(ownerPrivateKey: string, amount: string, network: string): Promise<string> {
   const token = {
     type: ETHTokenType.ETH,
     data: {
@@ -27,22 +27,56 @@ async function deposit(ownerPrivateKey: string, amount: string, network: string)
   });
 }
 
-async function main(ownerPrivateKey: string, amount: string, network:string) {
-  const response = await deposit(ownerPrivateKey, amount, network);
-  console.log(`Deposit Tx: ${JSON.stringify(response)}`);
+/**
+ * Deposit an NFT into L2 from L1, remember it has to already be registered
+ */
+ async function depositNFT(ownerPrivateKey: string, tokenId: string, smartContractAddress: string, network: string): Promise<string> {
+  const client = await getClient(network, ownerPrivateKey);
+  return await client.deposit({
+    user: client.address,
+    token: {
+      type: ERC721TokenType.ERC721,
+      data: {
+        tokenId,
+        tokenAddress: smartContractAddress
+      }
+    },
+    quantity: ethers.BigNumber.from('1')
+  })
+}
+
+async function main(ownerPrivateKey: string, network:string, amount?: string, tokenid?: string, tokenaddress?:string) {
+  let response = '';
+  if(tokenid && tokenaddress) {
+    response = await depositNFT(ownerPrivateKey, tokenid, tokenaddress, network);
+    console.log('deposit NFT')
+    console.log(`NFT deposit Tx: ${JSON.stringify(response)}`);
+  } 
+  else if(amount && !tokenid && !tokenaddress)
+  {
+    response = await depositETH(ownerPrivateKey, amount, network);
+    console.log('deposit ETH')
+    console.log(`ETH deposit Tx: ${JSON.stringify(response)}`);
+  }
+  else {
+    response = "Missing either the amount in an ETH deposit or ";
+    console.log(response)
+  }
 }
 
 const argv = yargs(process.argv.slice(2))
   .usage('Usage: -k <wallet_private_key> -a <amount>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true },
-    a: { describe: 'eth amount', type: 'string', demandOption: true },
+    a: { describe: 'eth amount', type: 'string', demandOption: false },
+    t: { describe: 'token id', type: 'string', demandOption: false },
+    s: { describe: 'smart contract address', type: 'string', demandOption: false},
     network: { describe: 'network. ropsten or mainnet', type: 'string', demandOption: true}
   })
   .parseSync();
 
-main(argv.k, argv.a, argv.network)
-  .then(() => { console.log('Deposit complete.')
+main(argv.k, argv.network, argv.a, argv.t, argv.s)
+  .then(() => { 
 })
   .catch(err => {
     console.error('Deposit failed.')
