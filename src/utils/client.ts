@@ -19,7 +19,7 @@ export async function getClient(network: string, privateKey?: string)
         signer,
         starkContractAddress: (network == "ropsten") ? process.env.ROPSTEN_STARK_CONTRACT_ADDRESS : undefined,
         registrationContractAddress: (network == "ropsten") ? process.env.ROPSTEN_REGISTRATION_CONTRACT_ADDRESS : undefined,
-        gasLimit: '80000',
-        gasPrice: '2000000000'
+        //gasLimit: '80000',
+        //gasPrice: '2000000000'
   })
 }
