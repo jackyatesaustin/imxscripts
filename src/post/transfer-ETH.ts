@@ -45,7 +45,7 @@ async function main(fromPrivateKey: string, receiver: string, amount: string, ne
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <from_private_key> -t <to_wallet_address> -a <amount>')
+  .usage('Usage: -k <PRIVATE_KEY> -r <RECEIVER_ADDRESS> -a <AMOUNT> --network <NETWORK>')
   .options({
     k: { describe: 'sender private key', type: 'string', demandOption: true },
     r: { describe: 'receiver address', type: 'string', demandOption: true },

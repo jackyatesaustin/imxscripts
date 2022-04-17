@@ -31,18 +31,18 @@ async function main(ownerPrivateKey: string, amount: string, decimals: number, s
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <private_key> -d <decimals> -s <symbol> -t <token_address> --network <network to withdraw>')
+  .usage('Usage: -k <PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -y <SYMBOL> -t <SMART_CONTRACT_ADDRESS> --network <NETWORK>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true },
     a: { describe: 'ERC20 amount', type: 'string', demandOption: true },
     d: { describe: 'decimals', type: 'number', demandOption: true },
-    s: { describe: 'symbol', type: 'string', demandOption: true },
-    t: { describe: 'token address', type: 'string', demandOption: true },
+    y: { describe: 'symbol', type: 'string', demandOption: true },
+    s: { describe: 'smart contract address', type: 'string', demandOption: true },
     network: { describe: 'network. ropsten or mainnet', type: 'string', demandOption: true}
   })
   .parseSync();
 
-main(argv.k, argv.a, argv.d, argv.s, argv.t, argv.network)
+main(argv.k, argv.a, argv.d, argv.y, argv.s, argv.network)
   .then(() => { 
 })
   .catch(err => {

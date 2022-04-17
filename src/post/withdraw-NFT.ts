@@ -56,7 +56,7 @@ async function main(
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <private_key> -t <token_id> -s <smart_contract_address> --step <current_withdrawal_step> --network <network to withdraw>')
+  .usage('Usage: -k <PRIVATE_KEY> -t <TOKEN_ID> -s <SMART_CONTRACT_ADDRESS> --step <WITHDRAWAL_STEP> --network <NETWORK>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true},
     t: { describe: 'token id', type: 'string', demandOption: true},

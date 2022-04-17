@@ -31,7 +31,7 @@ async function main(ownerPrivateKey: string, amount: string, decimals: number, s
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <from_private_key> -a <amount> -d <decimals> -s <symbol> -t <token_address> --network <network>')
+  .usage('Usage: -k <PRIVATE-KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --network <NETWORK>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true },
     a: { describe: 'ERC20 amount', type: 'string', demandOption: true },

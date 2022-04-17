@@ -32,10 +32,10 @@ async function main(ownerPrivateKey: string, amount: string, network:string) {
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <wallet_private_key> -a <amount>')
+  .usage('Usage: -k <PRIVATE_KEY> -a <AMOUNT>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true },
-    a: { describe: 'eth amount', type: 'string', demandOption: true },
+    a: { describe: 'ETH amount', type: 'string', demandOption: true },
     network: { describe: 'network. ropsten or mainnet', type: 'string', demandOption: true}
   })
   .parseSync();

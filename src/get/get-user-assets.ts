@@ -23,7 +23,7 @@ async function main(walletAddress: string, network: string): Promise<void> {
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -a <address>')
+  .usage('Usage: -a <ADDRESS>')
   .options({ 
   a: { alias: 'address', describe: 'wallet address', type: 'string', demandOption: true },
   network: { describe: 'network. ropsten or mainnet', type: 'string', demandOption: true}})

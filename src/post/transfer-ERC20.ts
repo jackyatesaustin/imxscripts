@@ -32,19 +32,19 @@ async function main(ownerPrivateKey: string, receiver: string, amount: string, d
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <from_private_key> -t <to_wallet_address> -a <amount>')
+  .usage('Usage: -k <PRIVATE_KEY> -r <RECEIVER_ADDRESS> -a <AMOUNT> -d <DECIMALS> -y <SYMBOL> -s <SMART_CONTRACT_ADDRESS> --network <NETWORK>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true },
     r: { describe: 'receiver address', type: 'string', demandOption: true },
     a: { describe: 'ERC20 amount', type: 'string', demandOption: true },
     d: { describe: 'decimals', type: 'number', demandOption: true },
-    s: { describe: 'symbol', type: 'string', demandOption: true },
-    t: { describe: 'token address', type: 'string', demandOption: true },
+    y: { describe: 'symbol', type: 'string', demandOption: true },
+    s: { describe: 'smart contract address', type: 'string', demandOption: true },
     network: { describe: 'network. ropsten or mainnet', type: 'string', demandOption: true}
   })
   .parseSync();
 
-main(argv.k, argv.r, argv.a, argv.d, argv.s, argv.t, argv.network)
+main(argv.k, argv.r, argv.a, argv.d, argv.y, argv.s, argv.network)
   .then(() => console.log('Transfer Complete'))
   .catch(err => {
     console.error(err);

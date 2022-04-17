@@ -35,7 +35,7 @@ async function main(ownerPrivateKey: string, tokenAddress: string, tokenId: stri
 }
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: -k <owner_private_key> -t <token_id> -s <smart_contract_address> -a <sale_amount> --network <network>')
+  .usage('Usage: -k <PRIVATE_KEY> -t <TOKEN_ID> -s <SMART_CONTRACT_ADDRESS> -a <SALE_AMOUNT> --network <NETWORK>')
   .options({
     k: { describe: 'wallet private key', type: 'string', demandOption: true },
     t: { describe: 'token id', type: 'string', demandOption: true },

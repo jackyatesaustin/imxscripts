@@ -17,7 +17,7 @@ run the code in this repository. Also make sure to rename the .env.example file 
 
 ## Scripts
 
-The scripts can be found in the `src/get` or `src/post` folder, and are broken down below.
+The scripts can be found in the `src/get` or `src/post` folder, and are broken down below. Network is defined as either `ropsten` or `mainnet`
 
 ### GET Requests
 
@@ -47,43 +47,52 @@ npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS> --network ropsten
 
 ### POST Requests
 
-#### Transfers
-
-Transfer a token between two users on IMX. This command only supports the transfer of ETH between
-users.
-
-##### ETH Transfer
+#### Transfer ETH
 
 ```
 npx ts-node ./src/post/transfer-ETH.ts -k <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT> --network ropsten
 ```
-##### NFT Transfer
+#### Transfer NFT
 
 ```
 npx ts-node ./src/post/transfer-NFT.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network ropsten
 ```
-##### ERC20 Transfer
+#### Transfer ERC20
 
 ```
 npx ts-node ./src/post/transfer-ERC20.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network ropsten
 ```
 
-#### Deposits
+#### Deposit ETH
 
-The current implementation only supports the depositing of ETH from L1 to L2.
-This script updates a users IMX balance. To deposit ETH from L1 to L2 issue the following command;
+To deposit ETH from L1 to L2 issue the following command:
 
 ```
-npx ts-node ./src/admin/deposit.ts -k <WALLET_PRIVATE_KEY> -a <AMOUNT_IN_ETH> --network ropsten
+npx ts-node ./src/post/deposit-ETH.ts -k <PRIVATE_KEY> -a <AMOUNT> --network <NETWORK>                    
+```
+
+#### Deposit NFT
+
+To deposit an NFT from L1 to L2 issue the following command:
+
+```
+npx ts-node ./src/post/deposit-NFT.ts -k <private_key> -t <token_id> -s <smart_contract_address> --network <network to withdraw>                    
+```
+
+#### Deposit ERC20
+
+To deposit ERC20 from L1 to L2 issue the following command:
+
+```
+npx ts-node ./src/post/deposit-ETH.ts -k <PRIVATE_KEY> -a <AMOUNT> --network <NETWORK>                    
 ```
 
 #### Withdrawals
 
 Withdrawals on IMX is a two step process. The withdrawal needs to be prepared first. During preparation funds are deducted from the off-chain vault, and moved into the pending on-chain withdrawals area. This area is accessible to the StarkEx contract which completes the withdrawal when the `completeWithdraw` function is invoked. The `completeWithdraw` function invokes the relevant StarkEx contract function depending on the type of token. For example if we are withdrawing ETH/ERC-20, it invokes the `prepareWithdraw` function. If we are withdrawing a token minted on IMX, it invokes the `withdrawAndMint` else it just invokes the `withdrawNFT` function.
 
-#### Prepare ETH Withdrawal
+##### Prepare ETH Withdrawal
 
-The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To prepare a withdrawal issue the following command;
 
 ```
