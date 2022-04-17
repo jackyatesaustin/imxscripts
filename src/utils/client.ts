@@ -12,13 +12,13 @@ dotenv.config();
  */
 export async function getClient(network: string, privateKey?: string)
   : Promise<ImmutableXClient> {
-      const provider = new ethers.providers.JsonRpcProvider((network == "ropsten") ? process.env.ROPSTEN_ETH_PROVIDER_URL : process.env.MAINNET_ETH_PROVIDER_URL);
+      const provider = new ethers.providers.JsonRpcProvider((network == "mainnet") ? process.env.MAINNET_ETH_PROVIDER_URL : process.env.ROPSTEN_ETH_PROVIDER_URL);
       const signer = privateKey ? new Wallet(privateKey).connect(provider) : undefined
       return await ImmutableXClient.build({ 
-        publicApiUrl: (network == "ropsten") ? process.env.ROPSTEN_ENV_URL! : process.env.MAINNET_ENV_URL!,
+        publicApiUrl: (network == "mainnet") ? process.env.MAINNET_ENV_URL! :  process.env.ROPSTEN_ENV_URL!,
         signer,
-        starkContractAddress: (network == "ropsten") ? process.env.ROPSTEN_STARK_CONTRACT_ADDRESS : undefined,
-        registrationContractAddress: (network == "ropsten") ? process.env.ROPSTEN_REGISTRATION_CONTRACT_ADDRESS : undefined,
+        starkContractAddress: (network == "mainnet") ? process.env.MAINNET_STARK_CONTRACT_ADDRESS : process.env.ROPSTEN_STARK_CONTRACT_ADDRESS,
+        registrationContractAddress: (network == "mainnet") ? process.env.MAINNET_REGISTRATION_CONTRACT_ADDRESS : process.env.ROPSTEN_REGISTRATION_CONTRACT_ADDRESS,
         //gasLimit: '80000',
         //gasPrice: '2000000000'
   })
