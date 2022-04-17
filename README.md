@@ -19,6 +19,8 @@ run the code in this repository. Also make sure to rename the .env.example file 
 
 The scripts can be found in the `src/get` or `src/post` folder, and are broken down below;
 
+### GET Requests
+
 #### Retrieve a users ETH balance
 
 ```
@@ -42,6 +44,8 @@ npx ts-node ./src/admin/get-starkkey.ts -a <WALLET_ADDRESS> --network ropsten
 ```
 npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS> --network ropsten
 ```
+
+### POST Requests
 
 ### Transfers
 
