@@ -52,17 +52,17 @@ npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS> --network ropsten
 Transfer a token between two users on IMX. This command only supports the transfer of ETH between
 users.
 
-#### ETH Transfer
+##### ETH Transfer
 
 ```
 npx ts-node ./src/post/transfer-ETH.ts -k <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT> --network ropsten
 ```
-#### NFT Transfer
+##### NFT Transfer
 
 ```
 npx ts-node ./src/post/transfer-NFT.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network ropsten
 ```
-#### ERC20 Transfer
+##### ERC20 Transfer
 
 ```
 npx ts-node ./src/post/transfer-ERC20.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network ropsten
