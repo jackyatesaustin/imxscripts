@@ -110,7 +110,11 @@ npx ts-node ./src/post/deposit-ETH.ts -k <PRIVATE_KEY> -a <AMOUNT> --network <NE
 To deposit an NFT from L1 to L2 issue the following command:
 
 ```
-npx ts-node ./src/post/deposit-NFT.ts -k <private_key> -t <token_id> -s <smart_contract_address> --network <NETWORK>                   
+npx ts-node ./src/post/deposit-NFT.ts \
+  -k <private_key> \
+  -t <token_id> \
+  -s <smart_contract_address> \
+  --network <NETWORK>                   
 ```
 
 #### Deposit ERC20
@@ -119,6 +123,13 @@ To deposit ERC20 from L1 to L2 issue the following command:
 
 ```
 npx ts-node ./src/post/deposit-ETH.ts -k <PRIVATE_KEY> -a <AMOUNT> --network <NETWORK>                    
+```
+
+#### Register user
+
+A user has to be registered in order to do anything on IMX. Registering a user creates a vault in the state of the L2.
+```
+npx ts-node ./src/post/register-user.ts -k <PRIVATE_KEY> --network <NETWORK>                    
 ```
 
 #### Withdrawals
