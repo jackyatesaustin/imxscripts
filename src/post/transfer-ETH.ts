@@ -40,7 +40,8 @@ async function transfer(fromPrivateKey: string, receiver: string, amount: string
 
 async function main(fromPrivateKey: string, receiver: string, amount: string, network: string): Promise<void> {
     // Transfer the token to the administrator
-    await transfer(fromPrivateKey, receiver, amount, network);
+    const result = await transfer(fromPrivateKey, receiver, amount, network);
+    console.log(result)
 }
 
 const argv = yargs(process.argv.slice(2))

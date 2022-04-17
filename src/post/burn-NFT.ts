@@ -25,7 +25,8 @@ async function burnNFT(ownerPrivateKey: string, tokenId: string, tokenAddress: s
 
 async function main(ownerPrivateKey: string, tokenid: string, tokenaddress:string, network:string): Promise<void> {
     // Transfer the token to the administrator
-    await burnNFT(ownerPrivateKey, tokenid, tokenaddress, network);
+    const result = await burnNFT(ownerPrivateKey, tokenid, tokenaddress, network);
+    console.log(result)
 }
 
 const argv = yargs(process.argv.slice(2))
