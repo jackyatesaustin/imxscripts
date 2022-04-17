@@ -17,7 +17,7 @@ run the code in this repository. Also make sure to rename the .env.example file 
 
 ## Scripts
 
-The scripts can be found in the `src/get` or `src/post` folder, and are broken down below;
+The scripts can be found in the `src/get` or `src/post` folder, and are broken down below.
 
 ### GET Requests
 
@@ -33,13 +33,13 @@ npx ts-node ./src/admin/get-balance.ts -a <WALLET_ADDRESS> --network ropsten
 npx ts-node ./src/admin/get-user-assets.ts -a <WALLET_ADDRESS> --network ropsten
 ```
 
-### Retrieve a Starkkey associated to a user
+#### Retrieve a Starkkey associated to a user
 
 ```
 npx ts-node ./src/admin/get-starkkey.ts -a <WALLET_ADDRESS> --network ropsten
 ```
 
-### Check whether a wallet is registered on IMX
+#### Check whether a wallet is registered on IMX
 
 ```
 npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS> --network ropsten
@@ -47,7 +47,7 @@ npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS> --network ropsten
 
 ### POST Requests
 
-### Transfers
+#### Transfers
 
 Transfer a token between two users on IMX. This command only supports the transfer of ETH between
 users.
@@ -68,7 +68,7 @@ npx ts-node ./src/post/transfer-NFT.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <D
 npx ts-node ./src/post/transfer-ERC20.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network ropsten
 ```
 
-### Deposits
+#### Deposits
 
 The current implementation only supports the depositing of ETH from L1 to L2.
 This script updates a users IMX balance. To deposit ETH from L1 to L2 issue the following command;
@@ -77,7 +77,7 @@ This script updates a users IMX balance. To deposit ETH from L1 to L2 issue the 
 npx ts-node ./src/admin/deposit.ts -k <WALLET_PRIVATE_KEY> -a <AMOUNT_IN_ETH> --network ropsten
 ```
 
-### Withdrawals
+#### Withdrawals
 
 Withdrawals on IMX is a two step process. The withdrawal needs to be prepared first. During preparation funds are deducted from the off-chain vault, and moved into the pending on-chain withdrawals area. This area is accessible to the StarkEx contract which completes the withdrawal when the `completeWithdraw` function is invoked. The `completeWithdraw` function invokes the relevant StarkEx contract function depending on the type of token. For example if we are withdrawing ETH/ERC-20, it invokes the `prepareWithdraw` function. If we are withdrawing a token minted on IMX, it invokes the `withdrawAndMint` else it just invokes the `withdrawNFT` function.
 
