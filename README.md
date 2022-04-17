@@ -17,50 +17,56 @@ run the code in this repository. Also make sure to rename the .env.example file 
 
 ## Scripts
 
-The scripts can be found in the `src/get` or `src/post` folder, and are broken down below. Network is defined as either `ropsten` or `mainnet`
+The scripts can be found in the `src/get` or `src/post` folder, and are broken down below. The network is defined as either `ropsten` or `mainnet` for all scripts.
 
 ### GET Requests
 
 #### Retrieve a users ETH balance
 
 ```
-npx ts-node ./src/admin/get-balance.ts -a <WALLET_ADDRESS> --network ropsten
+npx ts-node ./src/get/get-balance.ts -a <WALLET_ADDRESS> --network <NETWORK>
 ```
 
 #### Retrieve a users inventory
 
 ```
-npx ts-node ./src/admin/get-user-assets.ts -a <WALLET_ADDRESS> --network ropsten
-```
-
-#### Retrieve a Starkkey associated to a user
-
-```
-npx ts-node ./src/admin/get-starkkey.ts -a <WALLET_ADDRESS> --network ropsten
+npx ts-node ./src/get/get-user-assets.ts -a <WALLET_ADDRESS> --network <NETWORK>
 ```
 
 #### Check whether a wallet is registered on IMX
 
 ```
-npx ts-node ./src/admin/user.ts -a <WALLET_ADDRESS> --network ropsten
+npx ts-node ./src/get/get-user.ts -a <WALLET_ADDRESS> --network <NETWORK>
 ```
 
 ### POST Requests
 
+#### Burn ERC20
+
+```
+npx ts-node ./src/post/burn-ERC20.ts -k <PRVIATE_KEY> -a <AMOUNT> -d <DECIMALS> -y <SMART_CONTRACT_ADDRESS> -S <SMART_CONTRACT_ADDRESS> --network <NETWORK>
+```
+
+#### Burn NFT
+
+```
+npx ts-node ./src/post/burn-NFT.ts -k <PRIVATE_KEY> -t <TOKEN_ID> -s <SMART_CONTRACT_ADDRESS> --network <NETWORK>
+```
+
 #### Transfer ETH
 
 ```
-npx ts-node ./src/post/transfer-ETH.ts -k <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT> --network ropsten
+npx ts-node ./src/post/transfer-ETH.ts -k <SENDER_PRIVATE_KEY> -t <RECEIVER_ADDRESS> -a <AMOUNT> --network <NETWORK>
 ```
 #### Transfer NFT
 
 ```
-npx ts-node ./src/post/transfer-NFT.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network ropsten
+npx ts-node ./src/post/transfer-NFT.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network <NETWORK>
 ```
 #### Transfer ERC20
 
 ```
-npx ts-node ./src/post/transfer-ERC20.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network ropsten
+npx ts-node ./src/post/transfer-ERC20.ts -k <SENDER_PRIVATE_KEY> -a <AMOUNT> -d <DECIMALS> -s <SYMBOL> -t <TOKEN_ADDRESS> --step prepare --network <NETWORK>
 ```
 
 #### Deposit ETH
@@ -76,7 +82,7 @@ npx ts-node ./src/post/deposit-ETH.ts -k <PRIVATE_KEY> -a <AMOUNT> --network <NE
 To deposit an NFT from L1 to L2 issue the following command:
 
 ```
-npx ts-node ./src/post/deposit-NFT.ts -k <private_key> -t <token_id> -s <smart_contract_address> --network <network to withdraw>                    
+npx ts-node ./src/post/deposit-NFT.ts -k <private_key> -t <token_id> -s <smart_contract_address> --network <NETWORK>                   
 ```
 
 #### Deposit ERC20
@@ -96,11 +102,11 @@ Withdrawals on IMX is a two step process. The withdrawal needs to be prepared fi
 To prepare a withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdraw-ETH.ts \
+npx ts-node ./src/post/withdraw-ETH.ts \
   -k <WALLET_PRIVATE_KEY> \
   -a <AMOUNT> \
   --step prepare \ 
-  --network ropsten
+  --network <NETWORK>
 ```
 
 #### Complete ETH Withdrawal
@@ -109,11 +115,11 @@ The current implementation only supports the withdrawal preparation of an ERC-72
 To complete the withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdraw-ETH.ts \
+npx ts-node ./src/post/withdraw-ETH.ts \
   -k <WALLET_PRIVATE_KEY> \
   -s <SMART_CONTRACT_ADDRESS>
   --step complete \ 
-  --network ropsten
+  --network <NETWORK>
 ```
 
 
@@ -123,12 +129,12 @@ The current implementation only supports the withdrawal preparation of an ERC-72
 To prepare a withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdraw-NFT.ts \
+npx ts-node ./src/post/withdraw-NFT.ts \
   -k <WALLET_PRIVATE_KEY> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS> \
   --step prepare \ 
-  --network ropsten
+  --network <NETWORK>
 ```
 
 #### Complete NFT Withdrawal
@@ -137,12 +143,12 @@ The current implementation only supports the withdrawal preparation of an ERC-72
 To complete the withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdraw-NFT.ts \
+npx ts-node ./src/post/withdraw-NFT.ts \
   -k <WALLET_PRIVATE_KEY> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS>
   --step complete \ 
-  --network ropsten
+  --network <NETWORK>
 ```
 
 #### Prepare ERC20 Withdrawal
@@ -151,11 +157,14 @@ The current implementation only supports the withdrawal preparation of an ERC-72
 To prepare a withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdraw-ERC20.ts \
+npx ts-node ./src/post/withdraw-ERC20.ts \
   -k <WALLET_PRIVATE_KEY> \
   -a <AMOUNT> \
+  -d <DECIMALS> \
+  -y <SYMBOL> \
+  -t <TOKEN_ADDRESS> \
   --step prepare \ 
-  --network ropsten
+  --network <NETWORK>
 ```
 
 #### Complete ERC20 Withdrawal
@@ -164,16 +173,15 @@ The current implementation only supports the withdrawal preparation of an ERC-72
 To complete the withdrawal issue the following command;
 
 ```
-npx ts-node ./src/admin/withdraw-ERC20.ts \
+npx ts-node ./src/post/withdraw-ERC20.ts \
   -k <WALLET_PRIVATE_KEY> \
-  -t <TOKEN_ID> \
-  -s <SMART_CONTRACT_ADDRESS>
+  -d <DECIMALS> \
+  -y <SYMBOL> \
+  -t <TOKEN_ADDRESS> \
   --step complete \ 
-  --network ropsten
+  --network <NETWORK>
 ```
 
 
 ## TODO:
-
-* Add burn
 * Make amount on complete ETH withdrawal optional as it's not a variable
