@@ -247,3 +247,5 @@ npx ts-node ./src/post/withdraw-ERC20.ts \
 
 ## TODO:
 * Make amount on complete ETH withdrawal optional as it's not a variable
+* Add get trades method
+* Add get transfers method

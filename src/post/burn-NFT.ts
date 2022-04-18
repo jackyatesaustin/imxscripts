@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs';
-import { ethers, Wallet } from 'ethers';
+import { ethers } from 'ethers';
 import { ERC721TokenType, ImmutableMethodResults } from '@imtbl/imx-sdk';
 import { getClient } from '../utils/client';
 
