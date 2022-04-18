@@ -81,6 +81,7 @@ npx ts-node ./src/post/create-buy-order.ts \
   -k <PRIVATE_KEY> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS> \
+  -a <SALE_AMOUNT> \
   -o <ORDER_ID> \
   --network <NETWORK>
 ```
