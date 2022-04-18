@@ -63,6 +63,18 @@ npx ts-node ./src/post/burn-NFT.ts \
   --network <NETWORK>
 ```
 
+#### Create Project
+
+```
+npx ts-node ./src/post/create-project.ts -k <PRIVATE_KEY> -n <PROJECT_NAME> -c <COMPANY_NAME> -e <CONTACT_EMAIL> --network <NETWORK>
+```
+
+#### Creation Collection without optional parameters such metadata_api_url
+
+```
+npx ts-node ./src/post/create-collection.ts -k <PRIVATE_KEY> -n <NAME> -s <SMART_CONTRACT_ADDRESS> -p <PROJECT_ID> --network <NETWORK>
+```
+
 #### Create NFT<>ETH Sell Order
 
 ```
