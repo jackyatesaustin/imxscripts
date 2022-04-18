@@ -6,7 +6,7 @@ import { ERC721TokenType, ETHTokenType, ImmutableMethodResults } from '@imtbl/im
 import { getClient } from '../utils/client';
 
 
-async function sellNFT(ownerPrivateKey: string, tokenAddress: string, tokenId: string, sale_amount: string, network: string): Promise<ImmutableMethodResults.ImmutableCreateOrderResult> {
+async function sellNFT(ownerPrivateKey: string, tokenAddress: string, tokenId: string, saleAmount: string, network: string): Promise<ImmutableMethodResults.ImmutableCreateOrderResult> {
     const client = await getClient(network, ownerPrivateKey);
     return client.createOrder ({
         user: client.address,
@@ -24,13 +24,13 @@ async function sellNFT(ownerPrivateKey: string, tokenAddress: string, tokenId: s
                 decimals: 18,
             },
         },
-        amountBuy: ethers.BigNumber.from(sale_amount)
+        amountBuy: ethers.BigNumber.from(saleAmount)
     })
 }
 
-async function main(ownerPrivateKey: string, tokenAddress: string, tokenId: string, sale_amount:string, network:string): Promise<void> {
+async function main(ownerPrivateKey: string, tokenAddress: string, tokenId: string, saleAmount:string, network:string): Promise<void> {
     // Transfer the token to the administrator
-    const result = await sellNFT(ownerPrivateKey, tokenId, tokenAddress, sale_amount, network);
+    const result = await sellNFT(ownerPrivateKey, tokenId, tokenAddress, saleAmount, network);
     console.log(result)
 }
 
@@ -46,7 +46,7 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 main(argv.k, argv.t, argv.s, argv.a, argv.network)
-  .then(() => console.log('NFT Transfer Complete'))
+  .then(() => console.log('Sell order created'))
   .catch(err => {
     console.error(err);
     process.exit(1);
