@@ -6,7 +6,7 @@ import { ERC721TokenType, ETHTokenType, ImmutableMethodResults } from '@imtbl/im
 import { getClient } from '../utils/client';
 
 
-async function buyNFT(ownerPrivateKey: string, tokenAddress: string, tokenId: string, saleAmount: string, orderId: number, network: string): Promise<ImmutableMethodResults.ImmutableCreateTradeResult> {
+async function buyNFT(ownerPrivateKey: string, tokenId: string, tokenAddress: string, saleAmount: string, orderId: number, network: string): Promise<ImmutableMethodResults.ImmutableCreateTradeResult> {
     const client = await getClient(network, ownerPrivateKey);
     return client.createTrade ({
         orderId: orderId,
@@ -29,7 +29,7 @@ async function buyNFT(ownerPrivateKey: string, tokenAddress: string, tokenId: st
     })
 }
 
-async function main(ownerPrivateKey: string, tokenAddress: string, tokenId: string, saleAmount: string, orderId: number, network:string): Promise<void> {
+async function main(ownerPrivateKey: string, tokenId: string, tokenAddress: string, saleAmount: string, orderId: number, network:string): Promise<void> {
     // Transfer the token to the administrator
     const result = await buyNFT(ownerPrivateKey, tokenId, tokenAddress, saleAmount, orderId, network);
     console.log(result)
