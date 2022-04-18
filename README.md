@@ -74,7 +74,7 @@ npx ts-node ./src/post/create-project.ts \
   --network <NETWORK>
 ```
 
-#### Creation Collection without optional parameters such metadata_api_url
+#### Creation Collection without optional parameters metadata_api_url, description, icon_url, collection_image_url
 
 ```
 npx ts-node ./src/post/create-collection.ts \
@@ -122,9 +122,9 @@ To deposit an NFT from L1 to L2 issue the following command:
 
 ```
 npx ts-node ./src/post/deposit-NFT.ts \
-  -k <private_key> \
-  -t <token_id> \
-  -s <smart_contract_address> \
+  -k <PRIVATE_KEY> \
+  -t <TOKEN_ID> \
+  -s <SMART_CONTRACT_ADDRESS> \
   --network <NETWORK>                   
 ```
 
@@ -159,7 +159,7 @@ npx ts-node ./src/post/register-user.ts -k <PRIVATE_KEY> --network <NETWORK>
 
 ```
 npx ts-node ./src/post/transfer-ETH.ts \
-  -k <SENDER_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -t <RECEIVER_ADDRESS> \
   -a <AMOUNT> \
   --network <NETWORK>
@@ -168,7 +168,7 @@ npx ts-node ./src/post/transfer-ETH.ts \
 
 ```
 npx ts-node ./src/post/transfer-NFT.ts \
-  -k <SENDER_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -a <AMOUNT> \
   -d <DECIMALS> \
   -y <SYMBOL> \
@@ -180,7 +180,7 @@ npx ts-node ./src/post/transfer-NFT.ts \
 
 ```
 npx ts-node ./src/post/transfer-ERC20.ts \
-  -k <SENDER_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -a <AMOUNT> \
   -d <DECIMALS> \
   -y <SYMBOL> \
@@ -199,7 +199,7 @@ To prepare a withdrawal issue the following command;
 
 ```
 npx ts-node ./src/post/withdraw-ETH.ts \
-  -k <WALLET_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -a <AMOUNT> \
   --step prepare \ 
   --network <NETWORK>
@@ -212,7 +212,7 @@ To complete the withdrawal issue the following command;
 
 ```
 npx ts-node ./src/post/withdraw-ETH.ts \
-  -k <WALLET_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -s <SMART_CONTRACT_ADDRESS>
   --step complete \ 
   --network <NETWORK>
@@ -226,7 +226,7 @@ To prepare a withdrawal issue the following command;
 
 ```
 npx ts-node ./src/post/withdraw-NFT.ts \
-  -k <WALLET_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS> \
   --step prepare \ 
@@ -240,7 +240,7 @@ To complete the withdrawal issue the following command;
 
 ```
 npx ts-node ./src/post/withdraw-NFT.ts \
-  -k <WALLET_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -t <TOKEN_ID> \
   -s <SMART_CONTRACT_ADDRESS>
   --step complete \ 
@@ -254,7 +254,7 @@ To prepare a withdrawal issue the following command;
 
 ```
 npx ts-node ./src/post/withdraw-ERC20.ts \
-  -k <WALLET_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -a <AMOUNT> \
   -d <DECIMALS> \
   -y <SYMBOL> \
@@ -270,7 +270,7 @@ To complete the withdrawal issue the following command;
 
 ```
 npx ts-node ./src/post/withdraw-ERC20.ts \
-  -k <WALLET_PRIVATE_KEY> \
+  -k <PRIVATE_KEY>> \
   -d <DECIMALS> \
   -y <SYMBOL> \
   -t <TOKEN_ADDRESS> \

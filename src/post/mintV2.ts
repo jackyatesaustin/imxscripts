@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs';
-import { ImmutableMethodResults, MintableERC721TokenType } from '@imtbl/imx-sdk';
+import { ImmutableMethodResults } from '@imtbl/imx-sdk';
 import { getClient } from '../utils/client';
 
 /**
@@ -16,7 +16,7 @@ import { getClient } from '../utils/client';
             tokens: [{
                 id: tokenId,
                 blueprint: bluePrint,
-                royalties: royalties ? royalties : undefined
+                royalties: royalties
             }]
         }],
         contractAddress: tokenAddress
