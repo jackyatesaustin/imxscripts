@@ -117,7 +117,13 @@ npx ts-node ./src/post/deposit-ETH.ts -k <PRIVATE_KEY> -a <AMOUNT> --network <NE
 #### Mint NFT without royalties
 
 ```
-npx ts-node ./src/post/mintV2.ts -k <PRIVATE_KEY> -t <TOKEN_ID> -s <SMART_CONTRACT_ADDRESS> -b <BLUEPRINT> -r <RECEIVER_ADDRESS> --network <NETWORK>
+npx ts-node ./src/post/mintV2.ts \
+  -k <PRIVATE_KEY> \
+  -t <TOKEN_ID> \
+  -s <SMART_CONTRACT_ADDRESS> \
+  -b <BLUEPRINT> \
+  -r <RECEIVER_ADDRESS> \
+  --network <NETWORK>
 ```
 
 #### Register user
