@@ -63,6 +63,28 @@ npx ts-node ./src/post/burn-NFT.ts \
   --network <NETWORK>
 ```
 
+#### Create NFT<>ETH Sell Order
+
+```
+npx ts-node ./src/post/create-NFT-ETH-sell-order.ts \
+  -k <PRIVATE_KEY> \
+  -t <TOKEN_ID> \
+  -s <SMART_CONTRACT_ADDRESS> \
+  -a <SALE_AMOUNT> \
+  --network <NETWORK>
+```
+
+#### Create Buy Order
+
+```
+npx ts-node ./src/post/create-buy-order.ts \
+  -k <PRIVATE_KEY> \
+  -t <TOKEN_ID> \
+  -s <SMART_CONTRACT_ADDRESS> \
+  -o <ORDER_ID> \
+  --network <NETWORK>
+```
+
 #### Transfer ETH
 
 ```
