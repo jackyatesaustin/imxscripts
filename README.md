@@ -63,7 +63,7 @@ npx ts-node ./src/post/burn-NFT.ts \
   --network <NETWORK>
 ```
 
-#### Create Project
+#### Create project
 
 ```
 npx ts-node ./src/post/create-project.ts \
@@ -74,7 +74,7 @@ npx ts-node ./src/post/create-project.ts \
   --network <NETWORK>
 ```
 
-#### Creation Collection without optional parameters metadata_api_url, description, icon_url, collection_image_url
+#### Creation collection without optional parameters metadata_api_url, description, icon_url, collection_image_url
 
 ```
 npx ts-node ./src/post/create-collection.ts \
@@ -83,6 +83,20 @@ npx ts-node ./src/post/create-collection.ts \
   -s <SMART_CONTRACT_ADDRESS> \
   -p <PROJECT_ID> \
   --network <NETWORK>
+```
+
+#### Update collection
+
+```
+npx ts-node ./src/post/update-collection.ts \
+  -k <PRIVATE_KEY> \
+  -s <SMART_CONTRACT_ADDRESS> \
+  -n <NAME> \
+  -d <DESCRIPTION> \
+  -i <ICON_URL> \
+  -m <METADATA_API_URL> \
+  -o <COLLECTION_IMAGE_URL> \
+  --network ropsten
 ```
 
 #### Create NFT<>ETH Sell Order
@@ -96,7 +110,7 @@ npx ts-node ./src/post/create-NFT-ETH-sell-order.ts \
   --network <NETWORK>
 ```
 
-#### Create Buy Order
+#### Create buy order
 
 ```
 npx ts-node ./src/post/create-buy-order.ts \
@@ -193,7 +207,7 @@ npx ts-node ./src/post/transfer-ERC20.ts \
 
 Withdrawals on IMX is a two step process. The withdrawal needs to be prepared first. During preparation funds are deducted from the off-chain vault, and moved into the pending on-chain withdrawals area. This area is accessible to the StarkEx contract which completes the withdrawal when the `completeWithdraw` function is invoked. The `completeWithdraw` function invokes the relevant StarkEx contract function depending on the type of token. For example if we are withdrawing ETH/ERC-20, it invokes the `prepareWithdraw` function. If we are withdrawing a token minted on IMX, it invokes the `withdrawAndMint` else it just invokes the `withdrawNFT` function.
 
-##### Prepare ETH Withdrawal
+##### Prepare ETH withdrawal
 
 To prepare a withdrawal issue the following command;
 
@@ -205,7 +219,7 @@ npx ts-node ./src/post/withdraw-ETH.ts \
   --network <NETWORK>
 ```
 
-#### Complete ETH Withdrawal
+#### Complete ETH withdrawal
 
 The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To complete the withdrawal issue the following command;
@@ -219,7 +233,7 @@ npx ts-node ./src/post/withdraw-ETH.ts \
 ```
 
 
-#### Prepare NFT Withdrawal
+#### Prepare NFT withdrawal
 
 The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To prepare a withdrawal issue the following command;
@@ -233,7 +247,7 @@ npx ts-node ./src/post/withdraw-NFT.ts \
   --network <NETWORK>
 ```
 
-#### Complete NFT Withdrawal
+#### Complete NFT withdrawal
 
 The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To complete the withdrawal issue the following command;
@@ -247,7 +261,7 @@ npx ts-node ./src/post/withdraw-NFT.ts \
   --network <NETWORK>
 ```
 
-#### Prepare ERC20 Withdrawal
+#### Prepare ERC20 withdrawal
 
 The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To prepare a withdrawal issue the following command;
@@ -263,7 +277,7 @@ npx ts-node ./src/post/withdraw-ERC20.ts \
   --network <NETWORK>
 ```
 
-#### Complete ERC20 Withdrawal
+#### Complete ERC20 withdrawal
 
 The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To complete the withdrawal issue the following command;
