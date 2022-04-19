@@ -99,6 +99,13 @@ npx ts-node ./src/post/update-collection.ts \
   --network ropsten
 ```
 
+#### Add metadata schema to collection
+The schema itself is defined in the code and essentially defines the types for each piece of metadata.
+
+```
+npx ts-node ./src/post/add-metadata-schema.ts -k <PRIVATE_KEY> -s <SMART_CONTRACT_ADDRESS> --network <NETWORK>
+```
+
 #### Create NFT<>ETH Sell Order
 
 ```
