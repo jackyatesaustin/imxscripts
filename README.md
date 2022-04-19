@@ -314,3 +314,4 @@ npx ts-node ./src/post/withdraw-ERC20.ts \
 * Make amount on complete ETH withdrawal optional as it's not a variable
 * Add get trades method
 * Add get transfers method
+* Add metadata attribute types to add-metadata-schema and update-metadata-schema-by-name  
