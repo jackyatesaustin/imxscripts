@@ -113,7 +113,11 @@ npx ts-node ./src/post/add-metadata-schema.ts \
 Update a metadata schema by name, the updated schema is defined in the code.
 
 ```
-npx ts-node ./src/post/update-metadata-schema-by-name.ts -k <PRIVATE_KEY> -s <SMART_CONTRACT_ADDRESS> -n <NAME_OF_SCHEMA> --network <NETWORK>
+npx ts-node ./src/post/update-metadata-schema-by-name.ts \
+  -k <PRIVATE_KEY> \
+  -s <SMART_CONTRACT_ADDRESS> \
+  -n <NAME_OF_SCHEMA> \
+  --network <NETWORK>
 ```
 
 #### Create NFT<>ETH Sell Order
