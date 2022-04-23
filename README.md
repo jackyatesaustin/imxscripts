@@ -313,9 +313,32 @@ npx ts-node ./src/post/withdraw-ERC20.ts \
   --network <NETWORK>
 ```
 
+### L1 tasks
+
+#### Compile contract(s)
+
+Compiles the contracts in src/L1/artifacts using Hardhat
+
+```
+npx ts-node compile-contract.ts
+```
+
+#### Deploy contract
+
+Deploys a contract that has been compiled to src/L1/artifacts
+
+```
+npx ts-node deploy-contract.ts \
+  -k <PRIVATE_KEY> \
+  -c <CONTRACT> \
+  -n <NAME> \ 
+  -y <SYMBOL> \
+  --network ropsten
+```
 
 ## TODO:
 * Make amount on complete ETH withdrawal optional as it's not a variable
+* Fix get vaults
 * Add get trades method
 * Add get transfers method
 * Add metadata attribute types to add-metadata-schema and update-metadata-schema-by-name  

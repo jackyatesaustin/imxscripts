@@ -18,10 +18,10 @@ async function isRegistered(walletAddress: string, network:string): Promise<bool
   return isRegistered
 }
 
-async function getStarkKey(walletAddress: string, network: string): Promise<UserResponse> {
+export async function getStarkKey(walletAddress: string, network: string): Promise<UserResponse> {
   const client = await getClient(network);
-  const user = await client.getUser({ user: walletAddress });
-  return user
+  const response = await client.getUser({ user: walletAddress });
+  return response
 }
 
 const argv = yargs(process.argv.slice(2))
