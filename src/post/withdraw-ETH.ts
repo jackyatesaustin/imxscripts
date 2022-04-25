@@ -20,9 +20,8 @@ async function prepareETHWithdraw(privateKey: string, amount:string, network:str
   });
 }
 
-async function completeETHWithdraw(privateKey: string, amount: string, network: string): Promise<string> {
+async function completeETHWithdraw(privateKey: string, network: string): Promise<string> {
   const client = await getClient(network, privateKey);
-  const quantity = ethers.utils.parseEther(amount);
   return await client.completeWithdrawal({
     starkPublicKey: client.starkPublicKey,
     token: {

@@ -230,7 +230,7 @@ Withdrawals on IMX is a two step process. The withdrawal needs to be prepared fi
 
 ##### Prepare ETH withdrawal
 
-To prepare a withdrawal issue the following command;
+To prepare a withdrawal issue the following command:
 
 ```
 npx ts-node ./src/post/withdraw-ETH.ts \
@@ -242,13 +242,12 @@ npx ts-node ./src/post/withdraw-ETH.ts \
 
 #### Complete ETH withdrawal
 
-The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To complete the withdrawal issue the following command;
 
 ```
 npx ts-node ./src/post/withdraw-ETH.ts \
   -k <PRIVATE_KEY>> \
-  -s <SMART_CONTRACT_ADDRESS>
+  -a <AMOUNT> \
   --step complete \ 
   --network <NETWORK>
 ```
@@ -256,7 +255,6 @@ npx ts-node ./src/post/withdraw-ETH.ts \
 
 #### Prepare NFT withdrawal
 
-The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To prepare a withdrawal issue the following command;
 
 ```
@@ -270,7 +268,6 @@ npx ts-node ./src/post/withdraw-NFT.ts \
 
 #### Complete NFT withdrawal
 
-The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To complete the withdrawal issue the following command;
 
 ```
@@ -284,7 +281,6 @@ npx ts-node ./src/post/withdraw-NFT.ts \
 
 #### Prepare ERC20 withdrawal
 
-The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To prepare a withdrawal issue the following command;
 
 ```
@@ -300,7 +296,6 @@ npx ts-node ./src/post/withdraw-ERC20.ts \
 
 #### Complete ERC20 withdrawal
 
-The current implementation only supports the withdrawal preparation of an ERC-721 token.
 To complete the withdrawal issue the following command;
 
 ```
