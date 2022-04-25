@@ -325,12 +325,12 @@ npx ts-node compile-contract.ts
 
 #### Deploy contract
 
-Deploys a contract that has been compiled to src/L1/artifacts
+Deploys a contract that has been compiled to src/L1/artifacts. <CONTRACT_TO_DEPLOY> is the name of the compiled contract such as 'Asset' for Asset.sol
 
 ```
 npx ts-node deploy-contract.ts \
   -k <PRIVATE_KEY> \
-  -c <CONTRACT> \
+  -c <CONTRACT_TO_DEPLOY> \
   -n <NAME> \ 
   -y <SYMBOL> \
   --network ropsten
@@ -338,6 +338,7 @@ npx ts-node deploy-contract.ts \
 
 ## TODO:
 * Make amount on complete ETH withdrawal optional as it's not a variable
+* Add a method to fetch the latest IMX contracts directly from the repo before compile
 * Fix get vaults
 * Add get trades method
 * Add get transfers method

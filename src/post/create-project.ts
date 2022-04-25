@@ -3,7 +3,7 @@ import yargs from 'yargs';
 import { CreateProjectResult } from '@imtbl/imx-sdk';
 import { getClient } from '../utils/client';
 
-async function createProject(ownerPrivateKey: string, name: string, company_name: string, contact_email: string, network: string): Promise<CreateProjectResult> {
+export async function createProject(ownerPrivateKey: string, name: string, company_name: string, contact_email: string, network: string): Promise<CreateProjectResult> {
     const client = await getClient(network, ownerPrivateKey);
     return client.createProject ({
         name: name,
@@ -35,3 +35,4 @@ main(argv.k, argv.n, argv.c, argv.e, argv.network)
     console.error(err);
     process.exit(1);
   });
+  

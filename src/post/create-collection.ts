@@ -5,7 +5,7 @@ import { getClient, getSigner } from '../utils/client';
 
 require('dotenv').config();
 
-async function createCollection(ownerPrivateKey: string, tokenAddress: string, name: string, project_id: number, network: string, metadata_api_url?: string, description?: string, icon_url?: string, collection_image_url?: string): Promise<CreateCollectionsResult> {
+export async function createCollection(ownerPrivateKey: string, tokenAddress: string, name: string, project_id: number, network: string, metadata_api_url?: string, description?: string, icon_url?: string, collection_image_url?: string): Promise<CreateCollectionsResult> {
     const client = await getClient(network, ownerPrivateKey);
     const signer = await getSigner(network, ownerPrivateKey);
     return client.createCollection ({

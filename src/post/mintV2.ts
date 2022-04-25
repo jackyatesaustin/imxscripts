@@ -7,7 +7,7 @@ import { getClient } from '../utils/client';
 /**
  * Mint a token to the given user.
  */
- async function mintV2(ownerPrivateKey: string, tokenId: string, tokenAddress: string, bluePrint: string, receiver: string, network: string, royalties?: any[]) 
+ export async function mintV2(ownerPrivateKey: string, tokenId: string, tokenAddress: string, bluePrint: string, receiver: string, network: string, royalties?: any[]) 
  : Promise<ImmutableMethodResults.ImmutableOffchainMintV2Results> {
     const client = await getClient(network, ownerPrivateKey);
     return await client.mintV2([{

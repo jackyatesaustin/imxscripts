@@ -13,7 +13,6 @@
 
 # compiled contracts
 /src/L1/artifacts
-/src/L1/contracts
 
 # misc
 .DS_Store

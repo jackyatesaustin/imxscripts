@@ -4,7 +4,8 @@ import { getSigner } from '../utils/client';
 import { Contract } from "ethers";
 import yargs from 'yargs';
 
-async function deployContract(ownerPrivateKey: string, contract:string, name:string, symbol:string, network:string): Promise<Contract> {
+
+export async function deployContract(ownerPrivateKey: string, contract:string, name:string, symbol:string, network:string): Promise<Contract> {
     const signer = await getSigner(network, ownerPrivateKey); 
 
     // Create the contract factory for the asset defined in the contract parameter
@@ -14,11 +15,13 @@ async function deployContract(ownerPrivateKey: string, contract:string, name:str
     return await contractFactory.deploy(signer.address, name, symbol, (network == "mainnet") ? process.env.MAINNET_STARK_CONTRACT_ADDRESS : process.env.ROPSTEN_STARK_CONTRACT_ADDRESS);
 }
 
+
 async function main(ownerPrivateKey: string, contract:string, name:string, symbol:string, network:string): Promise<void> {
-    // Transfer the token to the administrator
     const deployedContract = await deployContract(ownerPrivateKey, contract, name, symbol, network);
-    console.log('Deployed Contract Address: ', deployedContract.address)
+    console.log('Deployed contract address:', deployedContract.address)
+    console.log('Deployer account:', await deployedContract.signer.getAddress())
 }
+
 
 const argv = yargs(process.argv.slice(2))
   .usage('Usage: -k <PRIVATE_KEY> -c <CONTRACT> -n <NAME> -y <SYMBOL> --network <NETWORK>')
