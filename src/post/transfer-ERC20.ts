@@ -1,29 +1,5 @@
-#!/usr/bin/env node
-
 import yargs from 'yargs';
-import { ethers } from 'ethers';
-import { ERC20TokenType, ImmutableMethodResults } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-/**
- * Transfer a token from one user to another.
- */
-async function transferERC20(ownerPrivateKey: string, receiver: string, amount: string, decimals: number, symbol: string, tokenAddress: string, network: string): Promise<ImmutableMethodResults.ImmutableTransferResult> {
-  const client = await getClient(network, ownerPrivateKey);  
-  return client.transfer({
-      sender: client.address,
-        token: {
-          type: ERC20TokenType.ERC20,
-            data: {
-                decimals: decimals,
-                symbol: symbol,
-                tokenAddress: tokenAddress
-          }
-        },
-        quantity: ethers.BigNumber.from(amount),
-        receiver: receiver,
-    });
-}
+import { transferERC20 } from '../utils/postHelpers/transfer-ERC20'
 
 async function main(ownerPrivateKey: string, receiver: string, amount: string, decimals: number, symbol:string, tokenAddress:string, network:string): Promise<void> {
     // Transfer the token to the administrator

@@ -1,27 +1,5 @@
-#!/usr/bin/env node
-
 import yargs from 'yargs';
-import { ethers } from 'ethers';
-import { ERC721TokenType, ImmutableMethodResults } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-/**
- * Transfer a token from one user to another.
- */
-async function burnNFT(ownerPrivateKey: string, tokenId: string, tokenAddress: string, network: string): Promise<ImmutableMethodResults.ImmutableBurnResult> {
-  const client = await getClient(network, ownerPrivateKey);  
-  return client.burn({
-      sender: client.address,
-        token: {
-            type: ERC721TokenType.ERC721,
-            data: {
-                tokenId: tokenId,
-                tokenAddress: tokenAddress
-            }
-        },
-    quantity: ethers.BigNumber.from(1),
-});
-}
+import { burnNFT } from '../utils/postHelpers/burn-NFT'
 
 async function main(ownerPrivateKey: string, tokenid: string, tokenaddress:string, network:string): Promise<void> {
     // Transfer the token to the administrator

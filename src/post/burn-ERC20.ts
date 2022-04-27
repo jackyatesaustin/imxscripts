@@ -1,28 +1,5 @@
-#!/usr/bin/env node
-
 import yargs from 'yargs';
-import { ethers } from 'ethers';
-import { ERC20TokenType, ImmutableMethodResults } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-/**
- * Transfer a token from one user to another.
- */
-async function burnERC20(ownerPrivateKey: string, amount: string, decimals: number, symbol: string, tokenAddress: string, network: string): Promise<ImmutableMethodResults.ImmutableBurnResult> {
-  const client = await getClient(network, ownerPrivateKey);  
-  return client.burn({
-      sender: client.address,
-        token: {
-          type: ERC20TokenType.ERC20,
-            data: {
-                decimals: decimals,
-                symbol: symbol,
-                tokenAddress: tokenAddress
-          }
-        },
-        quantity: ethers.BigNumber.from(amount),
-    });
-}
+import { burnERC20 } from '../utils/postHelpers/burn-ERC20'
 
 async function main(ownerPrivateKey: string, amount: string, decimals: number, symbol:string, tokenAddress:string, network:string): Promise<void> {
     // Burn the ERC20

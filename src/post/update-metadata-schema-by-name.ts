@@ -1,14 +1,7 @@
 #!/usr/bin/env node
+import { MetadataTypes, UpdateMetadataSchemaByNameParams } from '@imtbl/imx-sdk';
 import yargs from 'yargs';
-import { UpdateMetadataSchemaByNameParams, MetadataTypes, UpdateMetadataSchemaByNameResult } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-require('dotenv').config();
-
-async function updateMetadataSchemaByName(ownerPrivateKey: string, tokenAddress: string, name: string, schema: UpdateMetadataSchemaByNameParams, network: string): Promise<UpdateMetadataSchemaByNameResult> {
-    const client = await getClient(network, ownerPrivateKey);
-    return client.updateMetadataSchemaByName(name, tokenAddress, schema);
-}
+import { updateMetadataSchemaByName } from '../utils/postHelpers/update-metadata-schema-by-name'
 
 async function main(ownerPrivateKey: string, tokenAddress: string, name: string, schema: UpdateMetadataSchemaByNameParams, network: string): Promise<void> {
     // Transfer the token to the administrator
