@@ -1,41 +1,5 @@
-#!/usr/bin/env node
-
 import yargs from 'yargs';
-import { ERC20TokenType } from '@imtbl/imx-sdk';
-import { ethers } from 'ethers';
-import { getClient } from '../utils/client';
-
-async function prepareERC20Withdraw(ownerPrivateKey: string, amount: string,  decimals: number, symbol: string, tokenAddress: string, network: string): Promise<void> {
-    const client = await getClient(network, ownerPrivateKey);
-    const quantity = ethers.utils.parseEther(amount);
-    await client.prepareWithdrawal({
-        user: client.address,
-        token: {
-          type: ERC20TokenType.ERC20,
-             data: {
-                 decimals: decimals,
-                 symbol: symbol,
-                 tokenAddress: tokenAddress
-          }
-        },
-        quantity: ethers.BigNumber.from(amount)
-      })
-    }
-
-async function completeERC20Withdraw(ownerPrivateKey: string,  decimals: number, symbol: string, tokenAddress: string, network: string): Promise<string> {
-    const client = await getClient(network, ownerPrivateKey);
-    return await client.completeWithdrawal({
-        starkPublicKey: client.starkPublicKey,
-        token: {
-            type: ERC20TokenType.ERC20,
-               data: {
-                   decimals: decimals,
-                   symbol: symbol,
-                   tokenAddress: tokenAddress
-            }
-        },
-    })
-}
+import { prepareERC20Withdraw, completeERC20Withdraw } from '../utils/postHelpers/withdraw-ERC20'
 
 async function main(ownerPrivateKey: string, decimals: number, symbol:string, tokenAddress:string, step: string, network:string, amount?: string): Promise<void> {
   if (step === 'prepare') {

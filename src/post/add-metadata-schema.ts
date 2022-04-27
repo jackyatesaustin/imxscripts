@@ -1,14 +1,6 @@
-#!/usr/bin/env node
+import { AddMetadataSchemaToCollectionParams, MetadataTypes } from '@imtbl/imx-sdk';
 import yargs from 'yargs';
-import { AddMetadataSchemaToCollectionResult, AddMetadataSchemaToCollectionParams, MetadataTypes } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-require('dotenv').config();
-
-async function addMetadataSchemaToCollection(ownerPrivateKey: string, tokenAddress: string, schema: AddMetadataSchemaToCollectionParams, network: string): Promise<AddMetadataSchemaToCollectionResult> {
-    const client = await getClient(network, ownerPrivateKey);
-    return client.addMetadataSchemaToCollection(tokenAddress, schema);
-}
+import { addMetadataSchemaToCollection } from '../utils/postHelpers/add-metadata-schema';
 
 async function main(ownerPrivateKey: string, tokenAddress: string, schema: AddMetadataSchemaToCollectionParams, network: string): Promise<void> {
     // Transfer the token to the administrator

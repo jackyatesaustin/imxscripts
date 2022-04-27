@@ -1,29 +1,5 @@
-#!/usr/bin/env node
 import yargs from 'yargs';
-import { ethers } from 'ethers';
-import { ERC20TokenType } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-require('dotenv').config();
-
-/**
- * Deposit ERC20 into L2 from L1, remember it has to already be registered and whitelisted
- */
- async function depositERC20(ownerPrivateKey: string, amount: string,  decimals: number, symbol: string, tokenAddress: string, network: string): Promise<string> {
-    const client = await getClient(network, ownerPrivateKey);
-    return await client.deposit({
-      user: client.address,
-      token: {
-        type: ERC20TokenType.ERC20,
-           data: {
-               decimals: decimals,
-               symbol: symbol,
-               tokenAddress: tokenAddress
-        }
-      },
-      quantity: ethers.BigNumber.from(amount)
-    })
-  }
+import { depositERC20 } from '../utils/postHelpers/deposit-ERC20'
 
 async function main(ownerPrivateKey: string, amount: string, decimals: number, symbol:string, tokenAddress:string, network:string) {
     const response = await depositERC20(ownerPrivateKey, amount, decimals, symbol, tokenAddress, network);

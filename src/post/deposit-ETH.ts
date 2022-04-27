@@ -1,30 +1,5 @@
-#!/usr/bin/env node
 import yargs from 'yargs';
-import { ethers } from 'ethers';
-import { ETHTokenType } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-require('dotenv').config();
-
-/**
- * Deposit Eth from L1 into IMX (L2) for a single wallet. The environment
- * used in the deposit depends on the settings in the getClient call, and
- * the Eth provider used.
- */
-async function depositETH(ownerPrivateKey: string, amount: string, network: string): Promise<string> {
-  const client = await getClient(network, ownerPrivateKey);
-  const quantity = ethers.utils.parseEther(amount);
-  return await client.deposit({
-    user: await client.address,
-    token: {
-      type: ETHTokenType.ETH,
-      data: {
-        decimals: 18,
-      }
-    },
-    quantity
-  });
-}
+import { depositETH } from '../utils/postHelpers/deposit-ETH'
 
 async function main(ownerPrivateKey: string, amount: string, network:string) {
     const response = await depositETH(ownerPrivateKey, amount, network);

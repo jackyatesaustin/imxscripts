@@ -1,27 +1,6 @@
 #!/usr/bin/env node
-
 import yargs from 'yargs';
-import { ImmutableMethodResults } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-/**
- * Mint a token to the given user.
- */
- export async function mintV2(ownerPrivateKey: string, tokenId: string, tokenAddress: string, bluePrint: string, receiver: string, network: string, royalties?: any[]) 
- : Promise<ImmutableMethodResults.ImmutableOffchainMintV2Results> {
-    const client = await getClient(network, ownerPrivateKey);
-    return await client.mintV2([{
-        users: [{
-            etherKey: receiver.toLowerCase(),
-            tokens: [{
-                id: tokenId,
-                blueprint: bluePrint,
-                royalties: royalties
-            }]
-        }],
-        contractAddress: tokenAddress
-    }]);
-}
+import { mintV2 } from '../utils/postHelpers/mintV2'
 
 async function main(ownerPrivateKey: string, tokenId: string, tokenAddress: string, bluePrint: string, receiver: string, network:string): Promise<void> {
     // Transfer the token to the administrator

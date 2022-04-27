@@ -1,12 +1,5 @@
 import yargs from 'yargs';
-import { ImmutableMethodResults } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-
-async function cancelOrder(ownerPrivateKey: string, orderId: number, network: string): Promise<ImmutableMethodResults.ImmutableCancelOrderResult> {
-    const client = await getClient(network, ownerPrivateKey);
-    return client.cancelOrder(orderId);
-}
+import { cancelOrder } from '../utils/postHelpers/cancel-order'
 
 async function main(ownerPrivateKey: string, orderId: number, network:string): Promise<void> {
     // Transfer the token to the administraton

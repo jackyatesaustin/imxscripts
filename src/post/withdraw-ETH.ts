@@ -1,37 +1,5 @@
-#!/usr/bin/env node
-
 import yargs from 'yargs';
-import { ETHTokenType } from '@imtbl/imx-sdk';
-import { ethers } from 'ethers';
-import { getClient } from '../utils/client';
-
-async function prepareETHWithdraw(privateKey: string, amount:string, network:string): Promise<void> {
-  const client = await getClient(network, privateKey);
-  const quantity = ethers.utils.parseEther(amount);
-  await client.prepareWithdrawal({
-    user: await client.address,
-    token: {
-      type: ETHTokenType.ETH,
-      data: {
-        decimals: 18,
-      }
-    },
-    quantity
-  });
-}
-
-async function completeETHWithdraw(privateKey: string, network: string): Promise<string> {
-  const client = await getClient(network, privateKey);
-  return await client.completeWithdrawal({
-    starkPublicKey: client.starkPublicKey,
-    token: {
-        type: ETHTokenType.ETH,
-        data: {
-          decimals: 18,
-        }
-      },
-    });
-  }
+import { prepareETHWithdraw, completeETHWithdraw } from '../utils/postHelpers/withdraw-ETH'
 
 /**
  * Invokes either withdraw or prepareWithdraw depending on the values of the arguments
@@ -47,7 +15,7 @@ async function main(
     console.log('Preparing withdrawal');
     console.log('Result: ' + result);
   }  else {
-    const result = await completeETHWithdraw(privateKey, amount, network);
+    const result = await completeETHWithdraw(privateKey, network);
     console.log('Completing withdrawal');
     console.log('Result: ' + result);
   }

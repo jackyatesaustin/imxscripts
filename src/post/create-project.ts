@@ -1,16 +1,6 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
-import { CreateProjectResult } from '@imtbl/imx-sdk';
-import { getClient } from '../utils/client';
-
-export async function createProject(ownerPrivateKey: string, name: string, company_name: string, contact_email: string, network: string): Promise<CreateProjectResult> {
-    const client = await getClient(network, ownerPrivateKey);
-    return client.createProject ({
-        name: name,
-        company_name: company_name,
-        contact_email: contact_email
-    })
-}
+import { createProject } from '../utils/postHelpers/create-project'
 
 async function main(ownerPrivateKey: string, name: string, company_name: string, contact_email: string, network: string): Promise<void> {
     // Transfer the token to the administrator
