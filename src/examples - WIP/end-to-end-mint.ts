@@ -4,7 +4,7 @@ import { createProject } from "../utils/postHelpers/create-project";
 import { createCollection } from "../utils/postHelpers/create-collection";
 import { mintV2 } from "../utils/postHelpers/mintV2";
 import { getMint } from "../utils/getHelpers/get-mint"
-import yargs, { string } from 'yargs';
+import yargs from 'yargs';
 
 
 async function main(ownerPrivateKey:string, network:string) {
@@ -33,7 +33,7 @@ async function main(ownerPrivateKey:string, network:string) {
     console.log(mintresponse.results);
 
     //Fetch mint
-    const fetchmint = getMint(mintresponse.results[0].tx_id);
+    const fetchmint = await getMint(mintresponse.results[0].tx_id);
     console.log('Fetch mint:');
     console.log(fetchmint);
 }
