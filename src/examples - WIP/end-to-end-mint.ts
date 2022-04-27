@@ -3,6 +3,7 @@ import { deployContract } from "../utils/L1Helpers/deploy-contract";
 import { createProject } from "../utils/postHelpers/create-project";
 import { createCollection } from "../utils/postHelpers/create-collection";
 import { mintV2 } from "../utils/postHelpers/mintV2";
+import { getMint } from "../utils/getHelpers/get-mint"
 import yargs, { string } from 'yargs';
 
 
@@ -27,8 +28,14 @@ async function main(ownerPrivateKey:string, network:string) {
     console.log('Collection address:', collection.address)
 
     //Mint an asset
-    const response = await mintV2(ownerPrivateKey, '1', collection.address, 'test blueprint', await deployedContract.signer.getAddress(), network)
-    console.log(response.results)
+    const mintresponse = await mintV2(ownerPrivateKey, '1', collection.address, 'test blueprint', await deployedContract.signer.getAddress(), network)
+    console.log('Mint response:');
+    console.log(mintresponse.results);
+
+    //Fetch mint
+    const fetchmint = getMint(mintresponse.results[0].tx_id);
+    console.log('Fetch mint:');
+    console.log(fetchmint);
 }
 
 const argv = yargs(process.argv.slice(2))
