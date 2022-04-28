@@ -1,6 +1,10 @@
 # The goal of this guide is to start using Immutable to mint NFTs and leverage our APIs. Through this guide you will (1) Onboard to Immutable (2) Create NFTs and (3) Manage NFTs
 
-## Onboarding will create your profile. This includes registering a user (eg Angelica Bluterin - Vitalik's hypothetical sister), creating a project (eg The ABC Gaming Company) and creating a collection (eg Chess). Note that Projects are an overarching construct and Collections are  - you can have a 1:N mapping of Project:Collection(s). Note that this guide creates a single Project and Collection, but you are free to create.
+## Onboarding will create your profile. This includes registering a user, creating a project and creating a collection. 
+
+## Note that Projects are an overarching construct and Collections are individual collections of NFTs - you can have a 1:N mapping of Project:Collection(s). 
+
+## Note that this guide creates a single Project and Collection, but you are free to create.
 
 
 ## Prerequisites
