@@ -30,12 +30,26 @@ const argv = yargs(process.argv.slice(2))
  */
  const schema: AddMetadataSchemaToCollectionParams = {
     metadata: [
-        {
-        name: 'EXAMPLE_BOOLEAN',
-        type: MetadataTypes.Boolean,
-        filterable: true,
-        },
-        // ..add rest of schema here
+      {
+        name: "eco",
+        type: MetadataTypes.Text
+      },
+      {
+        name: "name",
+        type: MetadataTypes.Text
+      },
+      {
+        name: "pgn",
+        type: MetadataTypes.Text
+      },      
+      {
+        name: "FEN",
+        type: MetadataTypes.Text
+      },
+      {
+        name: "image_url",
+        type: MetadataTypes.Text
+      }
     ],
 };
 
