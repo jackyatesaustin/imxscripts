@@ -17,6 +17,7 @@ the following commands in your terminal in Mac OS.
 
 1. Install Homebrew - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 2. Install Node - `brew install node`
+3. Rename ../remove-this-text.env to .env and ../imx-quickstart/remove-this-text.env to .env
 
 
 ## (Onboarding) Step 1: Register a User
