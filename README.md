@@ -1,10 +1,13 @@
-# The goal of this guide is to start using Immutable to mint NFTs and leverage our APIs. Through this guide you will (1) Onboard to Immutable (2) Create NFTs and (3) Manage NFTs
+# Through this guide you will (1) Onboard to Immutable (2) Create NFTs and (3) Manage NFTs
 
-## Onboarding will create your profile. This includes registering a user, creating a project and creating a collection. 
+## Onboarding registers a user and creates a project.
+User = The Project's admin.
+Project = An overarching construct for a company (eg Bored Gaming Company).
+Collection = An individual collection of NFTs (eg Chess). You can have a 1:N mapping of Project:Collection(s).
 
-## Note that Projects are an overarching construct and Collections are individual collections of NFTs - you can have a 1:N mapping of Project:Collection(s). 
+## Creating NFTs creates the metadata and mints NFTs to Ropsten. 
 
-## Note that this guide creates a single Project and Collection, but you are free to create.
+## Managing the NFTs uses scripts to do things like deposits, withdrawals, transfers, trades, etc. 
 
 
 ## Prerequisites
@@ -91,7 +94,7 @@ npx ts-node ./src/post/create-collection.ts \
   --network <NETWORK>
 ```
 
-This Collection is mapped to the deployed smart contract. As aforementioned, you can create multiple Collections that are tied to one Project. To create additional collections, you need to repeat Step 3 and further steps.
+This Collection is mapped to the deployed smart contract. You can create multiple Collections that are tied to one Project. To create additional collections, you need to repeat Step 3 and further steps.
 
 View the output and view the address in https://docs.x.immutable.com/reference/getcollection
 
