@@ -1,11 +1,12 @@
 # Through this guide you will (1) Onboard to Immutable (2) Create NFTs and (3) Manage NFTs
 
 ## Onboarding registers a user and creates a project.
-User = The Project's admin.
-Project = An overarching construct for a company (eg Bored Gaming Company).
+User = The Project's admin. 
+Project = An overarching construct for a company (eg Bored Gaming Company). 
 Collection = An individual collection of NFTs (eg Chess). You can have a 1:N mapping of Project:Collection(s).
 
 ## Creating NFTs creates the metadata and mints NFTs to Ropsten. 
+Metadata can be stored on-chain, meaning in an ERC721 contract, or off-chain, meaning the ERC721 has a pointer to a database where the metadata is stored. When you mint, a string variable called blueprint is assigned. The string lives in the ERC721 contract and can be either the pointer to the off-chain database or random text. 
 
 ## Managing the NFTs uses scripts to do things like deposits, withdrawals, transfers, trades, etc. 
 
@@ -75,7 +76,7 @@ You can view the Deployed Contract Address in the Ropsten Etherscan logs. Notice
 
 The Metadata API is an off-chain storage location for off-chain NFT metadata. In this example, we use IPFS, a distributed file system, to host our metadata. For example, the "name" of our NFT with Token ID "1" is "Anderssen's Opening" - view this in the filename "1" in generated IPFS link.
 
-For each NFT that you will create there is a corresponding TokenID. This TokenID will be used as a 
+For each NFT that you will create there is a corresponding TokenID. This TokenID will be used as a unique identifier. When the mint happens, the token ID is taken, the 
 
 ## (Create NFTs) Step 5: Create a Collection
 1. Change your directory to imxscripts (cd ..)
@@ -126,6 +127,9 @@ npx ts-node ./src/post/add-metadata-schema.ts \
   -s <SMART_CONTRACT_ADDRESS> \
   --network <NETWORK>
 ```
+
+Having a metadata schema is useful because you can set a filterable parameter on each metadata and, if set to true, you can search for that metadata in the Immutable marketplace.
+
 ## (Create NFTs) Step 8: Mint NFTs
 1. Run the following to mint NFTs in bulk:
  ```
@@ -150,7 +154,7 @@ npx ts-node ./src/post/bulk-mintV2.ts \
   -r <your-wallet-address> \
   --network ropsten 
 ```
-
+Note the TokenID matches the IPFS files 1-10.
 
 ## (Manage NFTs) Step 9: GET/POST Scripts to manage NFTs
 The scripts can be found in the `src/get` or `src/post` folder, and are broken down below. The network is defined as either `ropsten` or `mainnet` for all scripts.
